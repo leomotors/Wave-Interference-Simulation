@@ -128,10 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Test
-
-test
-
 # VSCode
 
 settings.json
