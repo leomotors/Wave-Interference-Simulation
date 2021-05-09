@@ -131,7 +131,3 @@ dmypy.json
 # VSCode
 
 settings.json
-
-# Too Big File
-
-generated
