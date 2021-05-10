@@ -16,4 +16,4 @@ Run main.py
 
 ## Example
 
-<img src=https://github.com/Leomotors/Wave-Interference-Simulation/blob/main/Example/Example_3.gif width=500px alt="HTMLError: Unable to show image">
+<img src=https://github.com/Leomotors/Wave-Interference-Simulation/blob/1.1/Example/Example_5.gif width=500px alt="HTMLError: Unable to show image">
