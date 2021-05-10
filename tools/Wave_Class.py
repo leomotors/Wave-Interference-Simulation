@@ -19,8 +19,11 @@ class Wave:
     def setPhase(self, phase):
         self.startingPhase = phase
 
-    def getWaveFunction(self):
+    def getWaveFunction(self, spreading=False):
         def generatedFunction(d, t = 0):
+            if(spreading):
+                if(d > t * self.wavespeed):
+                    return 0
             k = 2 * PI / self.wavelength
             omega = 2 * PI * self.wavespeed / self.wavelength
             return self.waveamplitude * math.sin(k * d - omega * t + self.startingPhase)
