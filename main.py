@@ -53,6 +53,9 @@ for frame in ProgressBar(range(FRAMES)):
     images.append(Image_Obj)
 
 print("\nImage Processing done. Saving files...")
-images[0].save("./generated/{}.gif".format(fname),
+if FRAMES > 1:
+    images[0].save("./generated/{}.gif".format(fname),
                save_all=True, append_images=images[1:])
+else:
+    images[0].save("./generated/{}.png".format(fname))
 print("Saving DONE!")
