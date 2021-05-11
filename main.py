@@ -10,6 +10,7 @@ FRAMES = int(input("Frames Count: "))
 SPREADING = int(input("[Wave Config] Spreading: "))
 
 TICK_RATE = 0.1
+MIDDLE_AMPLITUDE = 127
 
 IMG_HEIGHT, IMG_WIDTH = (int(k) for k in input("Height, Width: ").split())
 
@@ -41,21 +42,21 @@ print("\nImage Processing...")
 images = []
 for frame in ProgressBar(range(FRAMES)):
     Picture_Array = np.zeros((IMG_WIDTH, IMG_HEIGHT), np.uint8)
-    for pixel in ProgressBar(range(IMG_WIDTH*IMG_HEIGHT), leave=False):
-        x = math.floor(pixel/IMG_HEIGHT)
-        y = pixel % IMG_HEIGHT
-        thisAmplitude = 127
-        for wind in range(WAVE_COUNT):
-            subWaveAmp = Wave_F1[wind](Wave_F2[wind](x, y), TICK_RATE * frame)
-            thisAmplitude += subWaveAmp
-        Picture_Array[x][y] = thisAmplitude
+    for x in ProgressBar(range(IMG_WIDTH), leave=False):
+        for y in ProgressBar(range(IMG_HEIGHT), leave=False):
+            thisSum = 0
+            for wind in range(WAVE_COUNT):
+                subWaveAmp = Wave_F1[wind](
+                    Wave_F2[wind](x, y), TICK_RATE * frame)
+                thisSum += subWaveAmp
+            Picture_Array[x][y] = MIDDLE_AMPLITUDE + thisSum
     Image_Obj = Image.fromarray(Picture_Array)
     images.append(Image_Obj)
 
 print("\nImage Processing done. Saving files...")
 if FRAMES > 1:
     images[0].save("./generated/{}.gif".format(fname),
-               save_all=True, append_images=images[1:])
+                   save_all=True, append_images=images[1:])
 else:
     images[0].save("./generated/{}.png".format(fname))
 print("Saving DONE!")
