@@ -6,9 +6,13 @@ from tqdm import tqdm as ProgressBar
 
 from utils.utils import *
 
+print("Welcome to Wave Inteference Simulator!")
+print("Here is where you can simulate waves inefficiency")
+print()
+
 FRAMES = int(input("Frames Count [-1 for auto]: "))
 
-SPREADING = int(input("[Wave Config] Spreading: "))
+SPREADING = int(input("[Wave Config] Spreading [1-Yes, 0-No]: "))
 
 TICK_RATE = 0.1
 MIDDLE_AMPLITUDE = 127
@@ -41,7 +45,8 @@ for wave in ProgressBar(List_Of_Wave):
 
 if FRAMES == -1:
    FRAMES = auto_frame_count(List_Of_Wave, IMG_HEIGHT, IMG_WIDTH, TICK_RATE)
-    
+
+# ! Inefficient part
 print("\nImage Processing...")
 images = []
 for frame in ProgressBar(range(FRAMES)):
