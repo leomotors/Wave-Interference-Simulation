@@ -50,6 +50,12 @@ for frame in ProgressBar(range(FRAMES)):
                     Wave_F2[wind](x, y), TICK_RATE * frame)
                 thisSum += subWaveAmp
             Picture_Array[x][y] = MIDDLE_AMPLITUDE + thisSum
+            
+            if Picture_Array[x][y] >= 256:
+                Picture_Array[x][y] = 255
+            elif Picture_Array[x][y] < 0:
+                Picture_Array[x][y] = 0
+            
     Image_Obj = Image.fromarray(Picture_Array)
     images.append(Image_Obj)
 
