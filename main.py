@@ -3,9 +3,10 @@ from tools.Wave_Class import Wave
 import numpy as np
 from PIL import Image
 from tqdm import tqdm as ProgressBar
-import math
 
-FRAMES = int(input("Frames Count: "))
+from utils.utils import *
+
+FRAMES = int(input("Frames Count [-1 for auto]: "))
 
 SPREADING = int(input("[Wave Config] Spreading: "))
 
@@ -38,6 +39,9 @@ for wave in ProgressBar(List_Of_Wave):
     Wave_F1.append(wave.getWaveFunction(SPREADING))
     Wave_F2.append(wave.distanceFunction())
 
+if FRAMES == -1:
+   FRAMES = auto_frame_count(List_Of_Wave, IMG_HEIGHT, IMG_WIDTH, TICK_RATE)
+    
 print("\nImage Processing...")
 images = []
 for frame in ProgressBar(range(FRAMES)):
